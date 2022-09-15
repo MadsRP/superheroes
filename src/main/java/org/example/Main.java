@@ -8,7 +8,8 @@ import java.util.Scanner;
 public class Main {
     UserInterface ui = new UserInterface();
     public void Run(){
-        ui.startProgram();
+        ui.velkomst();
+        ui.menu();
     }
     public static void main(String[] args) {
         Main main = new Main();

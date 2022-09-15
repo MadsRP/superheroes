@@ -7,13 +7,16 @@ public class UserInterface {
     Scanner scanner = new Scanner(System.in);
 
 
-    public void startProgram(){
+    public void velkomst() {
         System.out.printf("Velkommen til din personlige database over superhelte\n" +
                 "1. Opret ny superhelt.\n" +
                 "2. Liste af superhelte.\n" +
                 "3. Søg efter specifik superhelt i database.\n" +
                 "4. Søg efter flere superhelte samtidigt\n" +
                 "9. Luk database\n");
+    }
+
+    public void menu(){
 
         while (true) {
             String menuChooser = scanner.next();
