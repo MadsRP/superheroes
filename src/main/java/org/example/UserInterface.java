@@ -33,7 +33,7 @@ public class UserInterface {
                     "2. Liste af superhelte.\n" +
                     "3. Søg efter superhelt fra database.\n" +
                     "4. Søg efter flere superhelte samtidigt\n" +
-                    "9. Luk database\n");
+                    "9. Luk database");
         }
     }
 }
