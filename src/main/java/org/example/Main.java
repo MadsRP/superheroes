@@ -6,11 +6,12 @@ import javax.crypto.spec.PSource;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        UserInterface ui = new UserInterface();
+    UserInterface ui = new UserInterface();
+    public void Run(){
         ui.startProgram();
-
-
-
+    }
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.Run();
     }
 }

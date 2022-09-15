@@ -11,7 +11,8 @@ public class UserInterface {
         System.out.printf("Velkommen til din personlige database over superhelte\n" +
                 "1. Opret ny superhelt.\n" +
                 "2. Liste af superhelte.\n" +
-                "3. Søg efter superhelte i database.\n" +
+                "3. Søg efter specifik superhelt i database.\n" +
+                "4. Søg efter flere superhelte samtidigt\n" +
                 "9. Luk database\n");
 
         while (true) {
@@ -22,6 +23,8 @@ public class UserInterface {
                 database.printDatabase();
             } else if (menuChooser.equals("3")) {
                 database.searchSuperhero();
+            } else if (menuChooser.equals("4")) {
+                database.searchSuperheroList();
             } else if (menuChooser.equals("9")) {
                 break;
             }
@@ -29,6 +32,7 @@ public class UserInterface {
                     "1. Opret ny superhelt.\n" +
                     "2. Liste af superhelte.\n" +
                     "3. Søg efter superhelt fra database.\n" +
+                    "4. Søg efter flere superhelte samtidigt\n" +
                     "9. Luk database\n");
         }
     }

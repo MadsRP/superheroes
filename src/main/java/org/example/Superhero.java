@@ -97,5 +97,12 @@ public class Superhero {
                 "\nEr menneske: " + isAHuman;
         return printSuperhero;
     }
+
+    public String printSuperheroShort(){
+        String printSuperheroShort = "Navn: " + name +
+                "\nSuperhelte Navn: " + superheroName;
+        return printSuperheroShort;
+    }
+
 }
 

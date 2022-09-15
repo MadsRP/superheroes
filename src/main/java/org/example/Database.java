@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Database {
 
     Superhero superhero = new Superhero();
-
     Scanner scanner = new Scanner(System.in);
 
     Superhero superman = new Superhero("Clark Kent", "Superman", "Flyve, superstyrke, røntgensyn", 50000.0, 1920, true);
@@ -18,7 +17,7 @@ public class Database {
     Superhero wolverine = new Superhero("James 'Logan' Howleet", "Wolverine", "Regeneration, adamantite skeleton", 432000, 1954, true);
 
     ArrayList<Superhero> superheroes = new ArrayList<>(List.of(superman, spiderman, theMartian, wolverine));
-
+    ArrayList<Superhero> searchResult = new ArrayList<>();
 
     public void createNewHero() {
 
@@ -60,7 +59,6 @@ public class Database {
         String searchSuperhero = scanner.next();
         boolean couldntFind = false;
 
-
         if (searchSuperhero.isEmpty()) {
             System.out.println("Indtast venligt noget.");
         }
@@ -83,4 +81,29 @@ public class Database {
         }
 
     }
+
+    public void searchSuperheroList() {
+        System.out.println("Venligst indtast søgning ud fra supernavn: ");
+        String searchSuperhero = scanner.next();
+        Boolean couldntFind = false;
+
+        for (Superhero superhero : superheroes) {
+            if (superhero.getSuperheroName().toLowerCase(Locale.ROOT).contains(searchSuperhero.toLowerCase())) {
+                searchResult.add(superhero);
+                for(int i = 0; i<searchResult.size();i++){
+                    System.out.println(i+1 + ".\n"+ searchResult.get(i).printSuperheroShort()+"\n");
+                }
+            } else if (searchResult.size() == 0){
+                couldntFind = true;
+            }
+            if (couldntFind == true) {
+                System.out.println("Kunne ikke finde superhelt med dette navn.");
+                break;
+            }
+        }
+
+    }
+
+
 }
+
