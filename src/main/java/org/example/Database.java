@@ -94,27 +94,66 @@ public class Database {
         Boolean found = false;
 
         for (Superhero superhero : superheroes) {
+            searchResult.add(superhero);
             if (searchSuperhero.isEmpty()) {
                 System.out.println("Indtast venligt noget.");
                 found = true;
                 break;
             }
-                if (superhero.getSuperheroName().toLowerCase(Locale.ROOT).contains(searchSuperhero.toLowerCase())) {
-                    searchResult.add(superhero);
-                    {
-                        for (int i = 0; i < searchResult.size(); i++) {
-                            System.out.println(searchResult.get(i).printSuperheroShort() + "\n");
-                            found = true;
-                        }
-                    }
+            if (superhero.getSuperheroName().toLowerCase(Locale.ROOT).contains(searchSuperhero.toLowerCase())) {
 
+                for (int i = 0; i < searchResult.size(); i++) {
+                    superhero = searchResult.get(i);
+                    System.out.println(i + 1 + superhero.printSuperheroShort() + "\n");
+                    found = true;
                 }
-                searchResult.clear();
             }
-            if (!found) {
-                System.out.println("Kunne ikke finde superhelt ved det navn");
-            }
+        }
 
+        if (!found) {
+            System.out.println("Kunne ikke finde superhelt ved det navn");
         }
 
     }
+
+    public void editSuperHeroStats() {
+        System.out.println("Søg efter en superhelt du vil redigere.");
+        String searchSuperhero = scanner.nextLine();
+        Boolean found = false;
+        int i = 0;
+        searchResult.clear();
+
+        for (Superhero superhero : superheroes) {
+            searchResult.add(superhero);
+            if (searchSuperhero.isEmpty()) {
+                System.out.println("Indtast venligt noget.");
+                found = true;
+                break;
+            }
+            if (superhero.getSuperheroName().toLowerCase(Locale.ROOT).contains(searchSuperhero.toLowerCase())) {
+
+                for (i=0; i < searchResult.size(); i++) {
+                    superhero = searchResult.get(i);
+                    System.out.println(i + 1 + superhero.printSuperheroShort() + "\n");
+                    found = true;
+
+
+                }
+
+            }
+
+        }
+        System.out.println("Ud fra listenovenfra, hvilken vil du redigere i?");
+        scanner.nextInt(i);
+        System.out.println(searchResult.get(i));
+
+        if (!found) {
+            System.out.println("Kunne ikke finde superhelt ved det navn");
+        }
+
+    }
+
+
+}
+
+
