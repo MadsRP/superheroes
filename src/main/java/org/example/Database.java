@@ -59,6 +59,7 @@ public class Database {
         String searchSuperhero = scanner.nextLine();
         int i;
 
+
         for (Superhero superhero : superheroes) {
             if (superhero.getSuperheroName().toLowerCase(Locale.ROOT).contains(searchSuperhero.toLowerCase())) {
                 searchResult.add(superhero);
@@ -83,83 +84,90 @@ public class Database {
         searchSuperheroList();
 
         System.out.println("Ud fra listen ovenfra, hvilken vil du redigere i?");
-        int chooseSuperhero = scanner.nextInt();
-        scanner.nextLine();
-
-        Superhero editSuperhero = searchResult.get(chooseSuperhero-1);
-        System.out.println("Du redigere nu i " + editSuperhero.getSuperheroName());
-
-        System.out.println("Hvis du bare trykker enter, vil dataen ikke blevet redigeret.");
-        System.out.println("Skriv de nye værdier for " + editSuperhero.getSuperheroName());
-
-        System.out.println("Navn: " + editSuperhero.getName());
-        System.out.println("Vil du ændre på " + editSuperhero.getName() + "'s navn");
-        String newName = scanner.nextLine();
-        if (!newName.isEmpty())
-        {
-            editSuperhero.setName(newName);
-        }else {
-            System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s navn.");
-        }
-
-        System.out.println("Superhelte navn: " + editSuperhero.getSuperheroName());
-        System.out.println("Vil du ændre superhelte navnet?");
-
-        String newSuperheroName = scanner.nextLine();
-        if (!newName.isEmpty())
-        {
-            editSuperhero.setSuperheroName(newSuperheroName);
-        }else {
-            System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s super helte navn.");
-        }
-
-        System.out.println("Superkræfter: " + editSuperhero.getSuperPowers());
-        System.out.println("Vil du ændre superkræter?");
-        String newSuperPowers = scanner.nextLine();
-        if (!newName.isEmpty())
-        {
-            editSuperhero.setSuperPowers(newSuperPowers);
-        }else {
-            System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s superkræfter.");
-        }
-
-        System.out.println("Styrke: " + editSuperhero.getStrength());
-        System.out.println("Vil du ændre styrken?");
-        String newStrength = scanner.nextLine();
-        if (!newStrength.isEmpty()){
-            editSuperhero.setStrength(Double.parseDouble(newStrength));
-        }else {
-            System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s superhelte styrke.");
-        }
-
-        System.out.println("Skabelses År: " + editSuperhero.getCreationYear());
-        System.out.println("Vil du ændre årret " + editSuperhero.getSuperheroName() + " blew skabt i?");
-
-        String newCreationYear = scanner.nextLine();
-        if (!newCreationYear.isEmpty()){
-            editSuperhero.setCreationYear(Integer.parseInt(newCreationYear));
-        }else {
-            System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s skabelses år.");
-        }
+        String input = scanner.nextLine();
 
 
-        System.out.println("Vil du ændre om " + editSuperhero.getName() + " er menneskelig?");
-        System.out.println("y/n");
-        String newIsHuman = scanner.nextLine();
-        if (!newIsHuman.isEmpty()){
-            if (newIsHuman.equals("y"))
-            {
-                editSuperhero.setIsHuman(true);
-            } else{
-                editSuperhero.setIsHuman(false);
+        try {
+
+            int chooseSuperhero = Integer.parseInt(input);
+            if (chooseSuperhero > searchResult.size()) {
+                System.out.println("Venligst indtast ud fra tal fra listen.");
+            } else {
+                Superhero editSuperhero = searchResult.get(chooseSuperhero - 1);
+                System.out.println("Du redigere nu i " + editSuperhero.getSuperheroName());
+
+                System.out.println("Hvis du bare trykker enter, vil dataen ikke blevet redigeret.");
+                System.out.println("Skriv de nye værdier for " + editSuperhero.getSuperheroName());
+
+                System.out.println("Navn: " + editSuperhero.getName());
+                System.out.println("Vil du ændre på " + editSuperhero.getName() + "'s navn");
+                String newName = scanner.nextLine();
+                if (!newName.isEmpty()) {
+                    editSuperhero.setName(newName);
+                } else {
+                    System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s navn.");
+                }
+
+                System.out.println("Superhelte navn: " + editSuperhero.getSuperheroName());
+                System.out.println("Vil du ændre superhelte navnet?");
+
+                String newSuperheroName = scanner.nextLine();
+                if (!newName.isEmpty()) {
+                    editSuperhero.setSuperheroName(newSuperheroName);
+                } else {
+                    System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s super helte navn.");
+                }
+
+                System.out.println("Superkræfter: " + editSuperhero.getSuperPowers());
+                System.out.println("Vil du ændre superkræter?");
+                String newSuperPowers = scanner.nextLine();
+                if (!newName.isEmpty()) {
+                    editSuperhero.setSuperPowers(newSuperPowers);
+                } else {
+                    System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s superkræfter.");
+                }
+
+                System.out.println("Styrke: " + editSuperhero.getStrength());
+                System.out.println("Vil du ændre styrken?");
+                String newStrength = scanner.nextLine();
+                if (!newStrength.isEmpty()) {
+                    editSuperhero.setStrength(Double.parseDouble(newStrength));
+                } else {
+                    System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s superhelte styrke.");
+                }
+
+                System.out.println("Skabelses År: " + editSuperhero.getCreationYear());
+                System.out.println("Vil du ændre årret " + editSuperhero.getSuperheroName() + " blew skabt i?");
+
+                String newCreationYear = scanner.nextLine();
+                if (!newCreationYear.isEmpty()) {
+                    editSuperhero.setCreationYear(Integer.parseInt(newCreationYear));
+                } else {
+                    System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s skabelses år.");
+                }
+
+
+                System.out.println("Vil du ændre om " + editSuperhero.getName() + " er menneskelig?");
+                System.out.println("y/n");
+                String newIsHuman = scanner.nextLine();
+                if (!newIsHuman.isEmpty()) {
+                    if (newIsHuman.equals("y")) {
+                        editSuperhero.setIsHuman(true);
+                    } else {
+                        editSuperhero.setIsHuman(false);
+                    }
+                } else {
+                    System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s status som menneske");
+                }
+
+                System.out.println("Du har nu redigeret i: " + editSuperhero.getName());
+                System.out.println("Nedenfor er de nye værdier:");
+                System.out.println(editSuperhero.printSuperhero());
             }
-        }else {
-            System.out.println("Ingen ændringer i " + editSuperhero.getName() + "'s status som menneske");
-        }
 
-        System.out.println("Du har nu redigeret i: " + editSuperhero.getName());
-        System.out.println("Nedenfor er de nye værdier:");
-        System.out.println(editSuperhero.printSuperhero());
+            } catch(NumberFormatException e){
+                System.out.println("Venligst indtast et tal fra listen");
+            }
 
         searchResult.clear();
 
@@ -170,10 +178,19 @@ public class Database {
         searchSuperheroList();
 
         System.out.println("Ud fra listen ovenfra, hvilken superhelt kunne du tænke dig at slette?");
-        int deleteSuperhero = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println(superheroes.get(deleteSuperhero-1).getSuperheroName() + " er nu slettet");
-        superheroes.remove(deleteSuperhero-1);
+
+        String input = scanner.nextLine();
+        try {
+            int deleteSuperhero = Integer.parseInt(input);
+            if (deleteSuperhero > searchResult.size()) {
+                System.out.println("Venligst indtast et tal fra listen.");
+            } else {
+                System.out.println(superheroes.get(deleteSuperhero - 1).getSuperheroName() + " er nu slettet");
+                superheroes.remove(deleteSuperhero - 1);
+            }
+        } catch (NumberFormatException e){
+            System.out.println("Venligst indtast et nummer.");
+        }
 
     }
 
