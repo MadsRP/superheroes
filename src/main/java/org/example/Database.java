@@ -82,7 +82,7 @@ public class Database {
 
         searchSuperheroList();
 
-        System.out.println("Ud fra listenovenfra, hvilken vil du redigere i?");
+        System.out.println("Ud fra listen ovenfra, hvilken vil du redigere i?");
         int chooseSuperhero = scanner.nextInt();
         scanner.nextLine();
 
@@ -165,6 +165,17 @@ public class Database {
 
 
     }
+
+    public void deleteSuperhero(){
+        searchSuperheroList();
+
+        System.out.println("Ud fra listen ovenfra, hvilken superhelt kunne du tænke dig at slette?");
+        int chooseSuperhero = scanner.nextInt();
+        scanner.nextLine();
+        superheroes.remove(chooseSuperhero);
+
+    }
+
 }
 
 
