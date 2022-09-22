@@ -54,43 +54,9 @@ public class Database {
         }
     }
 
-    public void searchSuperhero() {
-        System.out.println("Venligst indtast søgning ud fra supernavn: ");
-        String searchSuperhero = scanner.nextLine();
-        Boolean found = false;
-
-
-        for (Superhero superhero : superheroes) {
-            if (searchSuperhero.isEmpty()) {
-                System.out.println("Indtast venligt noget.");
-                found = true;
-                break;
-            }
-            if (superhero.getSuperheroName().toLowerCase(Locale.ROOT).contains(searchSuperhero.toLowerCase())) {
-
-                if (superheroes.size() > 1) {
-                    System.out.println(superheroes.size());
-                    superheroes.remove(superheroes.size() - 1);
-                    System.out.println(superhero.printSuperhero());
-                    found = true;
-                    break;
-                } else if (superheroes.size() == 1) {
-                    System.out.println(superhero.printSuperhero());
-                    found = true;
-                    break;
-                }
-            }
-
-        }
-        if (!found) {
-            System.out.println("Kan ikke finde nogle superhelte ud fra søgning");
-        }
-    }
-
     public void searchSuperheroList() {
         System.out.println("Venligst indtast søgning ud fra supernavn: ");
         String searchSuperhero = scanner.nextLine();
-        Boolean found = false;
         int i;
 
         for (Superhero superhero : superheroes) {
@@ -105,6 +71,8 @@ public class Database {
         }else{
             System.out.println("Der findens ingen personer i listen med navn: " + searchSuperhero);
         }
+
+        searchResult.clear();
     }
 
 
@@ -193,7 +161,7 @@ public class Database {
         System.out.println("Nedenfor er de nye værdier:");
         System.out.println(editSuperhero.printSuperhero());
 
-
+        searchResult.clear();
 
 
     }
