@@ -14,6 +14,7 @@ public class UserInterface {
                 "3. Søg efter superhelte fra database ud fra superhelte navn\n" +
                 "4. Rediger superhelt\n" +
                 "5. Slet superhelt\n" +
+                "6. Find specifik superhelt med fuld udskrift\n" +
                 "9. Luk database\n");
     }
 
@@ -31,6 +32,8 @@ public class UserInterface {
                 database.editSuperHeroStats();
             }else if (menuChooser.equals("5")) {
                     database.deleteSuperhero();
+            }else if (menuChooser.equals("6")) {
+                database.searchSpecificHero();
             } else if (menuChooser.equals("9")) {
                 break;
             }
@@ -40,7 +43,9 @@ public class UserInterface {
                     "3. Søg efter superhelte fra database ud fra superhelte navn\n" +
                     "4. Rediger superhelt\n" +
                     "5. Slet superhelt\n" +
+                    "6. Find specifik superhelt med fuld udskrift\n" +
                     "9. Luk database");
         }
+
     }
 }

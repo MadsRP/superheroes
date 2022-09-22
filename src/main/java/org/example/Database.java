@@ -55,6 +55,7 @@ public class Database {
     }
 
     public void searchSuperheroList() {
+        searchResult.clear();
         System.out.println("Venligst indtast søgning ud fra supernavn: ");
         String searchSuperhero = scanner.nextLine();
         int i;
@@ -74,24 +75,45 @@ public class Database {
             System.out.println("Der findens ingen personer i listen med navn: " + searchSuperhero);
         }
 
+    }
+
+    public void searchSpecificHero(){
         searchResult.clear();
+        searchSuperheroList();
+        System.out.println("Hvilken superhelt kunne du tænke dig at se?");
+        String input = scanner.nextLine();
+        int findSuperhero = Integer.parseInt(input) - 1;
+
+        try {
+            if (findSuperhero > searchResult.size()) {
+                System.out.println("Venligst indtast et tal fra listen.");
+            } else {
+                System.out.println(searchResult.get(findSuperhero).printSuperhero());
+            }
+        } catch (NumberFormatException e){
+            System.out.println("Venligst indtast et nummer.");
+        }
+
     }
 
     public void editSuperHeroStats() {
-
+        searchResult.clear();
         searchSuperheroList();
+        int chooseSuperhero;
 
         System.out.println("Ud fra listen ovenfra, hvilken vil du redigere i?");
+
         String input = scanner.nextLine();
+        chooseSuperhero = Integer.parseInt(input) - 1;
+        Superhero editSuperhero = searchResult.get(chooseSuperhero);
 
 
         try {
 
-            int chooseSuperhero = Integer.parseInt(input);
             if (chooseSuperhero > searchResult.size()) {
-                System.out.println("Venligst indtast ud fra tal fra listen.");
+                System.out.println("Venligst indtast et tal fra listen.");
             } else {
-                Superhero editSuperhero = searchResult.get(chooseSuperhero - 1);
+
                 System.out.println("Du redigere nu i " + editSuperhero.getSuperheroName());
 
                 System.out.println("Hvis du bare trykker enter, vil dataen ikke blevet redigeret.");
@@ -161,37 +183,39 @@ public class Database {
                 System.out.println("Du har nu redigeret i: " + editSuperhero.getName());
                 System.out.println("Nedenfor er de nye værdier:");
                 System.out.println(editSuperhero.printSuperhero());
+
+
             }
 
-            } catch(NumberFormatException e){
-                System.out.println("Venligst indtast et tal fra listen");
-            }
-
-        searchResult.clear();
-
-
+        }catch(NumberFormatException e){
+            System.out.println("Venligst indtast et tal fra listen");
+        }
     }
-
-    public void deleteSuperhero(){
+    public void deleteSuperhero() {
+        searchResult.clear();
         searchSuperheroList();
 
+        System.out.println(searchResult.size());
         System.out.println("Ud fra listen ovenfra, hvilken superhelt kunne du tænke dig at slette?");
 
         String input = scanner.nextLine();
-        try {
-            int deleteSuperhero = Integer.parseInt(input);
-            if (deleteSuperhero > searchResult.size()) {
-                System.out.println("Venligst indtast et tal fra listen.");
-            } else {
-                System.out.println(superheroes.get(deleteSuperhero - 1).getSuperheroName() + " er nu slettet");
-                superheroes.remove(deleteSuperhero - 1);
-            }
-        } catch (NumberFormatException e){
-            System.out.println("Venligst indtast et nummer.");
-        }
+        int deleteSuperhero = Integer.parseInt(input) - 1;
 
+            try {
+                if (deleteSuperhero > searchResult.size()) {
+                   System.out.println("Venligst indtast et tal fra listen.");
+               } else {
+                    System.out.println(searchResult.get(deleteSuperhero).getSuperheroName() + " er nu slettet");
+                    searchResult.remove(deleteSuperhero - 1);
+
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Venligst indtast et nummer.");
+            }
+
+        }
     }
 
-}
+
 
 
