@@ -23,7 +23,7 @@ public class Superhero {
         this.strength = strength;
         this.creationYear = creationYear;
         this.isHuman = isHuman;
-        if (isHuman = true){
+        if (isHuman == true){
             isAHuman = "Ja";
         }else {
             isAHuman = "Nej";
@@ -48,7 +48,7 @@ public class Superhero {
     }
 
     public void setIsHuman(Boolean isHuman){
-        if (isHuman = true){
+        if (isHuman == true){
             isAHuman = "Ja";
         }else {
             isAHuman = "Nej";
