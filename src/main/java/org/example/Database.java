@@ -170,9 +170,10 @@ public class Database {
         searchSuperheroList();
 
         System.out.println("Ud fra listen ovenfra, hvilken superhelt kunne du tænke dig at slette?");
-        int chooseSuperhero = scanner.nextInt();
+        int deleteSuperhero = scanner.nextInt();
         scanner.nextLine();
-        superheroes.remove(chooseSuperhero);
+        System.out.println(superheroes.get(deleteSuperhero-1).getSuperheroName() + " er nu slettet");
+        superheroes.remove(deleteSuperhero-1);
 
     }
 
