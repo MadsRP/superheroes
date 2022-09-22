@@ -67,17 +67,15 @@ public class Database {
         }
         if (!searchResult.isEmpty()) {
             for (i = 0; i < searchResult.size(); i++) {
-                System.out.println(i+1 + ": " + searchResult.get(i));
+                System.out.println(i+1 + ": " + searchResult.get(i).getName() + ", " + searchResult.get(i).getSuperheroName() + ".");
             }
+            System.out.println("\n");
         }else{
             System.out.println("Der findens ingen personer i listen med navn: " + searchSuperhero);
         }
 
         searchResult.clear();
     }
-
-
-
 
     public void editSuperHeroStats() {
 
