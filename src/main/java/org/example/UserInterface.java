@@ -20,22 +20,32 @@ public class UserInterface {
 
     public void menu(){
 
+
+
         while (true) {
-            String menuChooser = scanner.next();
-            if (menuChooser.equals("1")) {
-                database.createNewHero();
-            } else if (menuChooser.equals("2")) {
-                database.printDatabase();
-            } else if (menuChooser.equals("3")) {
-                database.searchSuperheroList();}
-            else if (menuChooser.equals("4")) {
-                database.editSuperHeroStats();
-            }else if (menuChooser.equals("5")) {
+            try {
+                String menuChooser = scanner.next();
+                int menuChooserInt = Integer.parseInt(menuChooser);
+                if (menuChooserInt == 1) {
+                    database.createNewHero();
+                } else if (menuChooserInt == 2) {
+                    database.printDatabase();
+                } else if (menuChooserInt == 3) {
+                    database.searchSuperheroList();
+                } else if (menuChooserInt == 4) {
+                    database.editSuperHeroStats();
+                } else if (menuChooserInt == 5) {
                     database.deleteSuperhero();
-            }else if (menuChooser.equals("6")) {
-                database.searchSpecificHero();
-            } else if (menuChooser.equals("9")) {
-                break;
+                } else if (menuChooserInt == 6) {
+                    database.searchSpecificHero();
+                } else if (menuChooserInt == 9) {
+                    break;
+                } else if (menuChooser.isEmpty()) ;
+                {
+                    System.out.println("Venligst indtast et tal fra listen");
+                }
+            } catch (NumberFormatException e){
+                System.out.println("Venligst indtast et nummer fra listen.");
             }
             System.out.println("Vælg venligst hvad du vil nu:\n" +
                     "1. Opret ny superhelt.\n" +
