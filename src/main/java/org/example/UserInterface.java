@@ -1,13 +1,19 @@
 package org.example;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class UserInterface {
-    Database database = new Database();
+    Controller controller = new Controller();
     Scanner scanner = new Scanner(System.in);
 
 
-    public void velkomst() {
+    public UserInterface() throws IOException {
+    }
+
+
+    public void velkomst() throws IOException {
         System.out.printf("Velkommen til din personlige database over superhelte\n" +
                 "1. Opret ny superhelt.\n" +
                 "2. Liste af superhelte.\n" +
@@ -20,32 +26,42 @@ public class UserInterface {
 
     public void menu(){
 
-
-
         while (true) {
             try {
                 String menuChooser = scanner.next();
                 int menuChooserInt = Integer.parseInt(menuChooser);
-                if (menuChooserInt == 1) {
-                    database.createNewHero();
-                } else if (menuChooserInt == 2) {
-                    database.printDatabase();
-                } else if (menuChooserInt == 3) {
-                    database.searchSuperheroList();
-                } else if (menuChooserInt == 4) {
-                    database.editSuperHeroStats();
-                } else if (menuChooserInt == 5) {
-                    database.deleteSuperhero();
-                } else if (menuChooserInt == 6) {
-                    database.searchSpecificHero();
-                } else if (menuChooserInt == 9) {
-                    break;
-                } else if (menuChooser.isEmpty()) ;
+
+                if (menuChooser.isEmpty())
                 {
                     System.out.println("Venligst indtast et tal fra listen");
+                } else{
+                    switch (menuChooserInt) {
+                        case 1:
+                            controller.createNewHero();
+                            break;
+                        case 2:
+                            controller.printDatabase();
+                            break;
+                        case 3:
+                            controller.searchSuperheroList();
+                            break;
+                        case 4:
+                            controller.editSuperHeroStats();
+                            break;
+                        case 5:
+                            controller.deleteSuperhero();
+                            break;
+                        case 6:
+                            controller.searchSpecificHero();
+                            break;
+                        case 9:
+                            break;
+                    }
                 }
             } catch (NumberFormatException e){
                 System.out.println("Venligst indtast et nummer fra listen.");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
             System.out.println("Vælg venligst hvad du vil nu:\n" +
                     "1. Opret ny superhelt.\n" +

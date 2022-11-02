@@ -1,0 +1,4 @@
+Clark Kent, Superman, Flyve, superstyrke, røntgensyn, 50000.0, 1920, true
+Peter Parker", Spiderman, Superstyrke, webskydning, intelligens, 30000, 1940, true
+Jonzz, Martian Manhuter, Shapeshifting, Telepati, 'Martian Vision', 45000, 1950, false
+James 'Logan' Howleet, Wolverine, Regeneration, adamantite skeleton, 432000, 1954, true
