@@ -1,11 +1,6 @@
-package org.example;
+import UI.UserInterface;
 
-import org.w3c.dom.ls.LSOutput;
-
-import javax.crypto.spec.PSource;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Main {
     UserInterface ui = new UserInterface();

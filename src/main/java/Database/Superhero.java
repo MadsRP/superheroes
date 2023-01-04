@@ -1,33 +1,27 @@
-package org.example;
+package Database;
+
+import java.util.ArrayList;
 
 public class Superhero {
 
     private String name = "";
     private String superheroName = "";
-    private double strength;
+    private double superStrengthNumber;
     private String superPowers = "";
+
     private Boolean isHuman;
     private int creationYear = 0;
-
-    private Boolean setHuman;
-
-    private String isAHuman;
 
     public Superhero(){
 
     }
-    public Superhero(String name, String superheroName, String superPowers, double strength, int creationYear, boolean isHuman){
+    public Superhero(String name, String superheroName, String superPowers, double superStrengthNumber, int creationYear, boolean isHuman){
         this.name = name;
         this.superheroName = superheroName;
         this.superPowers = superPowers;
-        this.strength = strength;
+        this.superStrengthNumber = superStrengthNumber;
         this.creationYear = creationYear;
         this.isHuman = isHuman;
-        if (isHuman == true){
-            isAHuman = "Ja";
-        }else {
-            isAHuman = "Nej";
-        }
 
     }
 
@@ -39,8 +33,8 @@ public class Superhero {
         this.superheroName = superheroName;
     }
 
-    public void setStrength(double strength){
-        this.strength = strength;
+    public void setSuperStrengthNumber(double superStrengthNumber){
+        this.superStrengthNumber = superStrengthNumber;
     }
 
     public void setSuperPowers(String superPowers){
@@ -48,11 +42,7 @@ public class Superhero {
     }
 
     public void setIsHuman(Boolean isHuman){
-        if (isHuman == true){
-            isAHuman = "Ja";
-        }else {
-            isAHuman = "Nej";
-        }
+       this.isHuman = isHuman;
     }
 
     public void setCreationYear(int creationYear){
@@ -67,8 +57,8 @@ public class Superhero {
         return superheroName;
     }
 
-    public double getStrength(){
-        return strength;
+    public double getSuperStrengthNumber(){
+        return superStrengthNumber;
     }
 
     public String getSuperPowers(){
@@ -79,29 +69,18 @@ public class Superhero {
         return creationYear;
     }
 
-    public String getIsAHuman(){
-        return isAHuman;
-    }
-
-    public String toString(){
-        String toString = name + " " + superheroName + " " + superPowers + " " + strength + " " + creationYear + " " + isAHuman;
-        return toString;
-    }
-
-    public String printSuperhero(){
-        String printSuperhero = "Navn: " + name +
-                "\nSuperhelte Navn: " + superheroName +
-                "\nSuperkræfter: " + superPowers +
-                "\nStyrke: " + strength +
-                "\nSkabelses År: " + creationYear +
-                "\nEr menneske: " + isAHuman;
-        return printSuperhero;
-    }
-
     public String printSuperheroShort(){
         String printSuperheroShort = "Navn: " + name +
                 "\nSuperhelte Navn: " + superheroName;
         return printSuperheroShort;
+    }
+
+    public Boolean getHuman() {
+        return isHuman;
+    }
+
+    public void setHuman(Boolean human) {
+        isHuman = human;
     }
 
 }
