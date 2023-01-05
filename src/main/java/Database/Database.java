@@ -10,6 +10,7 @@ import javax.swing.*;
 
 public class Database {
     private static FileHandler fh = new FileHandler();
+    private Scanner scanner = new Scanner(System.in);
     private ArrayList<Superhero> superheroes = new ArrayList<>();
 
     public Database()  throws FileNotFoundException{
@@ -61,12 +62,30 @@ public class Database {
 
     }
 
+    public Superhero searchSuperheroByName() {
+        System.out.println("Venligst indtast søgning ud fra supernavn: ");
+        String searchSuperhero = scanner.nextLine();
+        Superhero superhero;
+        superheroList();
+        ArrayList <Superhero> searchResult = new ArrayList<>();
+        for (Superhero superhero1 : superheroList()) {
+            if (superhero1.getSuperheroName().toLowerCase(Locale.ROOT).contains(searchSuperhero.toLowerCase())) {
+                searchResult.add(superhero1);
+            }
+        }
+        if (!searchResult.isEmpty()) {
+                superhero = searchResult.get(0);
+        }else{
+            superhero = null;
+        }
+        return superhero;
+    }
+
 
     public void searchSpecificHero(){
-        Scanner userInput = new Scanner(System.in);
         superheroListPrint();
         System.out.println("Hvilken superhelt kunne du tænke dig at se?");
-        int input = userInput.nextInt()-1;
+        int input = scanner.nextInt()-1;
         try {
             if (input > superheroList().size()) {
                 System.out.println("Venligst indtast et tal fra listen.");
@@ -374,8 +393,6 @@ public class Database {
     }
 
     //GET+SETTERS
-
-
 
     public ArrayList<Superhero> getSuperheroes() {
         return superheroes;

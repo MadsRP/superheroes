@@ -13,6 +13,7 @@ public class MenuText {
                 "4. Slet superhelt\n" +
                 "5. Find specifik superhelt med fuld udskrift\n" +
                 "6. Sortering Af Database\n" +
+                "7. Søg efter helt, ud fra heltenavn\n" +
                 "9. Luk database");
     }
 

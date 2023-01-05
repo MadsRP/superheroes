@@ -27,12 +27,11 @@ public class UserInterface {
         mainMenu();
     }
     public void mainMenu() {
-        menuText.menu();
-        while (true) {
+        while (true ) {
+            menuText.menu();
             try {
                 String menuChooser = scanner.next();
                 int menuChooserInt = Integer.parseInt(menuChooser);
-
                 if (menuChooser.isEmpty()) {
                     System.out.println("Venligst indtast et tal fra listen");
                 } else {
@@ -55,7 +54,12 @@ public class UserInterface {
                         case 6:
                             sortingUIIntro();
                             break;
+                        case 7:
+                            searchHeroByName();
+                            break;
                         case 9:
+                            System.out.println("Lukker database.");
+                            System.exit(0);
                             break;
                         default:
                             mainMenu();
@@ -116,6 +120,16 @@ public class UserInterface {
 
     public ArrayList<Superhero> superheroList() {
         return controller.superheroList();
+    }
+
+    public void searchHeroByName(){
+        Superhero superhero = new Superhero();
+        superhero = controller.searchHeroByName();
+        if (superhero == null){
+            System.out.println("Der findes ingen med det navn i databasen");
+        } else {
+            printHero(superhero);
+        }
     }
 
     public void printSuperheroList() {
@@ -442,12 +456,12 @@ public class UserInterface {
         }
     }
     public void sortSuperHeroNameCreationYear(){
-        for (Superhero superhero : controller.sortBySuperPowerThenCreationYear()) {
+        for (Superhero superhero : controller.sortBySuperHeroNameThenCreationYear()) {
             printHero(superhero);
         }
     }
     public void sortSuperHeroNameHuman(){
-        for (Superhero superhero : controller.sortBySuperPowerThenHuman()) {
+        for (Superhero superhero : controller.sortBySuperHeroNameThenHuman()) {
             printHero(superhero);
         }
     }

@@ -22,6 +22,7 @@ public class Controller {
         return db.superheroList();
     }
 
+
     public Superhero newSuperhero(String name, String superheroName, String superPowers, double superStrengthNumber, int creationYear, boolean isHuman){
         return db.newSuperhero(name, superheroName, superPowers, superStrengthNumber, creationYear, isHuman);
     }
@@ -31,6 +32,10 @@ public class Controller {
     }
     public void editSuperhero(int input, String newName, String newSuperheroName, String newSuperPowers, String newStrength, String newCreationYear, String newIsHuman) {
         db.editSuperhero(input, newName, newSuperheroName, newSuperPowers, newStrength, newCreationYear, newIsHuman);
+    }
+
+    public Superhero searchHeroByName(){
+        return db.searchSuperheroByName();
     }
 
     public void sletMedlem(int nr) {
@@ -87,18 +92,18 @@ public class Controller {
     }
 
     public ArrayList<Superhero> sortBySuperHeroNameThenSuperPowers(){
-        return db.sortByNameThenSuperPowers();
+        return db.sortBySuperheroNameThenPowers();
     }
     public ArrayList<Superhero> sortBySuperHeroNameThenStrength(){
-        return db.sortByNameThenStrengthLevel();
+        return db.sortBySuperheroNameThenStrengthLevel();
     }
 
     public ArrayList<Superhero> sortBySuperHeroNameThenCreationYear(){
-        return db.sortByNameThenCreationYear();
+        return db.sortBySuperheroNameThenCreationYear();
     }
 
     public ArrayList<Superhero> sortBySuperHeroNameThenHuman(){
-        return db.sortByNameThenHuman();
+        return db.sortBySuperheroNameThenHuman();
     }
 
     //POWERSSORT
