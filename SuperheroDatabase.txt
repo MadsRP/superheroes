@@ -3,8 +3,8 @@ smads;malkdmsakmldsa;ælkadsælkaldækas;30.0;130;false
 xmads;ads;stærk;30.0;340;true
 gmads;Mads;stærk;30.0;334232320;true
 hmads;mads;stærk;30.0;340;true
-nmads;mads;stærk;30.0;30;true
-mads;mads;stærk;30.0;30;true
+nmads;mads;stærk;32.0;30;true
+mads;mads;stærk;31.0;30;true
 mads;mads;stærk;30.0;30;true
 mads;mads;ja;30.0;30;false
 Charlex;Xavier;Telekensifklsmfks;5.3053053E7;1932;true

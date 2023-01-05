@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.util.*;
 import ComparatorPackage.*;
 
+import javax.swing.*;
+
 public class Database {
     private static FileHandler fh = new FileHandler();
     private ArrayList<Superhero> superheroes = new ArrayList<>();
@@ -14,12 +16,13 @@ public class Database {
 
     }
 
+    //CRUD
+
     public Superhero newSuperhero(String name, String superheroName, String superPowers, double superStrengthNumber, int creationYear, boolean isHuman){
         Superhero superhero = new Superhero(name, superheroName, superPowers, superStrengthNumber, creationYear, isHuman);
         superheroes.add(superhero);
         return superhero;
     }
-
 
     public void saveSuperhero(ArrayList<Superhero> saveSuperHero){
         fh.saveSuperhero(saveSuperHero);
@@ -29,13 +32,11 @@ public class Database {
         return fh.superheroList();
     }
 
-
     public void superheroListPrint(){
         for (int i = 0; i < superheroList().size(); i++) {
             System.out.println(i + 1 + ") " + superheroList().get(i).getName() + ", " + superheroList().get(i).getSuperheroName());
         }
     }
-
 
 
     public void deleteSuperhero(int input){
@@ -86,61 +87,6 @@ public class Database {
         }
 
     }
-
-
-
-
-    public ArrayList<Superhero> getSuperheroes() {
-        return superheroes;
-    }
-
-    public void setSuperheroes(ArrayList<Superhero> superheroes) {
-        this.superheroes = superheroes;
-    }
-
-
-    public File getSuperheroDatabase() {
-        return fh.getSuperheroDatabase();
-    }
-
-    public void setSuperheroDatabase() {
-        fh.setSuperheroDatabase(fh.getSuperheroDatabase());
-    }
-
-    //SORTING
-
-    public ArrayList sortByName(){
-        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
-        Collections.sort(tempSuperhero, new NameComparator());
-        return tempSuperhero;
-    }
-
-    public ArrayList sortBySupername(){
-        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
-        Collections.sort(tempSuperhero, new SuperheroNameComparator());
-        return tempSuperhero;
-    }
-    public ArrayList sortByPowers(){
-        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
-        Collections.sort(tempSuperhero, new SuperPowersComparator());
-        return tempSuperhero;
-    }
-    public ArrayList sortByStrengthLevel(){
-        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
-        Collections.sort(tempSuperhero, new StrengthComparator());
-        return tempSuperhero;
-    }
-    public ArrayList sortByCreationYear(){
-        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
-        Collections.sort(tempSuperhero, new CreationYearComparator());
-        return tempSuperhero;
-    }
-    public ArrayList sortByIsHuman(){
-        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
-        Collections.sort(tempSuperhero, new NameComparator());
-        return tempSuperhero;
-    }
-
 
     public void editSuperhero(int input, String newName, String newSuperheroName, String newSuperPowers, String newStrength, String newCreationYear, String newIsHuman) {
 
@@ -208,7 +154,250 @@ public class Database {
         }
 
     }
+
+
+    //SORTING
+
+    public ArrayList sortByName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new NameComparator());
+        return tempSuperhero;
+    }
+
+    public ArrayList sortBySupername(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperheroNameComparator());
+        return tempSuperhero;
+    }
+    public ArrayList sortByPowers(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperPowersComparator());
+        return tempSuperhero;
+    }
+    public ArrayList sortByStrengthLevel(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new StrengthComparator());
+        return tempSuperhero;
+    }
+    public ArrayList sortByCreationYear(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new CreationYearComparator());
+        return tempSuperhero;
+    }
+    public ArrayList sortByIsHuman(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new NameComparator());
+        return tempSuperhero;
+    }
+    //SORTBYNAMEFIRST
+
+    public ArrayList sortByNameThenSuperName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new NameComparator().thenComparing(new SuperheroNameComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByNameThenSuperPowers(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new NameComparator().thenComparing(new SuperPowersComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByNameThenStrengthLevel(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new NameComparator().thenComparing(new StrengthComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByNameThenCreationYear(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new NameComparator().thenComparing(new CreationYearComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByNameThenHuman(){
+       ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+       Collections.sort(tempSuperhero, new NameComparator().thenComparing(new HumanComparator()));
+       return tempSuperhero;
+    }
+
+    //SORTBYSUPERHERONAME
+
+    public ArrayList sortBySuperheroNameThenName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperheroNameComparator().thenComparing(new NameComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortBySuperheroNameThenPowers(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperheroNameComparator().thenComparing(new SuperPowersComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortBySuperheroNameThenStrengthLevel(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperheroNameComparator().thenComparing(new StrengthComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortBySuperheroNameThenCreationYear(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperheroNameComparator().thenComparing(new CreationYearComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortBySuperheroNameThenHuman(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperheroNameComparator().thenComparing(new HumanComparator()));
+        return tempSuperhero;
+    }
+
+    //SORTBYPOWERS
+
+    public ArrayList sortByPowersThenName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperPowersComparator().thenComparing(new NameComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortByPowersThenSuperHeroName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperPowersComparator().thenComparing(new SuperheroNameComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortByPowersThenStrength(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperPowersComparator().thenComparing(new StrengthComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortByPowersThenCreationYear(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperPowersComparator().thenComparing(new CreationYearComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortByPowersThenHuman(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new SuperPowersComparator().thenComparing(new HumanComparator()));
+        return tempSuperhero;
+    }
+
+
+
+    //SORTBYSTRENGTH
+
+    public ArrayList sortByStrengthThenName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new StrengthComparator().thenComparing(new NameComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortByStrengthThenSuperheroName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new StrengthComparator().thenComparing(new SuperheroNameComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByStrengthThenPowers(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new StrengthComparator().thenComparing(new SuperPowersComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByStrengthThenCreationYear(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new StrengthComparator().thenComparing(new CreationYearComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByStrengthThenHuman(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new StrengthComparator().thenComparing(new HumanComparator()));
+        return tempSuperhero;
+    }
+
+
+    //SORTBYCREATIONYEAR
+
+    public ArrayList sortByCreationYearThenName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new CreationYearComparator().thenComparing(new NameComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortByCreationYearThenSuperHeroName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new CreationYearComparator().thenComparing(new SuperheroNameComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortByCreationYearThenPowers(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new CreationYearComparator().thenComparing(new SuperPowersComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortByCreationYearThenStrength(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new CreationYearComparator().thenComparing(new StrengthComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByCreationYearThenHuman(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new CreationYearComparator().thenComparing(new HumanComparator()));
+        return tempSuperhero;
+    }
+
+    //SORTBYHUMAN
+
+    public ArrayList sortByHumanThenName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new HumanComparator().thenComparing(new NameComparator()));
+        return tempSuperhero;
+    }
+
+    public ArrayList sortByHumanThenSuperHeroName(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new HumanComparator().thenComparing(new SuperheroNameComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByHumanThenSuperPowers(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new HumanComparator().thenComparing(new SuperPowersComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByHumanThenStrength(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new HumanComparator().thenComparing(new StrengthComparator()));
+        return tempSuperhero;
+    }
+    public ArrayList sortByHumanThenCreationYear(){
+        ArrayList<Superhero> tempSuperhero = new ArrayList<>((superheroList()));
+        Collections.sort(tempSuperhero, new HumanComparator().thenComparing(new CreationYearComparator()));
+        return tempSuperhero;
+    }
+
+    //GET+SETTERS
+
+
+
+    public ArrayList<Superhero> getSuperheroes() {
+        return superheroes;
+    }
+
+    public void setSuperheroes(ArrayList<Superhero> superheroes) {
+        this.superheroes = superheroes;
+    }
+
+
+    public File getSuperheroDatabase() {
+        return fh.getSuperheroDatabase();
+    }
+
+    public void setSuperheroDatabase() {
+        fh.setSuperheroDatabase(fh.getSuperheroDatabase());
+    }
+
+
 }
+
+
 
 
 

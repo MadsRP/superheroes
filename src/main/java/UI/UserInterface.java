@@ -3,7 +3,6 @@ package UI;
 import Database.Controller;
 import Database.Superhero;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,6 +12,8 @@ public class UserInterface {
     private Controller controller = new Controller();
     private Scanner scanner = new Scanner(System.in);
     private MenuText menuText = new MenuText();
+
+    private int input = 0;
 
 
     public UserInterface() throws IOException {
@@ -25,7 +26,6 @@ public class UserInterface {
     public void menu() {
         mainMenu();
     }
-
     public void mainMenu() {
         menuText.menu();
         while (true) {
@@ -43,17 +43,17 @@ public class UserInterface {
                         case 2:
                             printSuperheroList();
                             break;
-                        case 4:
+                        case 3:
                             editSuperHeroStats(scanner);
                             break;
-                        case 5:
+                        case 4:
                             deleteSuperhero();
                             break;
-                        case 6:
+                        case 5:
                             searchSpecificHero();
                             break;
-                        case 7:
-                            sortBySingleCriteria();
+                        case 6:
+                            sortingUIIntro();
                             break;
                         case 9:
                             break;
@@ -66,8 +66,14 @@ public class UserInterface {
             }
         }
     }
+
+
     //PRINT HERO
     public void printHero(Superhero superhero) {
+        superheroPrint(superhero);
+    }
+
+    static void superheroPrint(Superhero superhero) {
         System.out.print(superhero.getName());
         System.out.print(", " + superhero.getSuperheroName());
         System.out.print(", " + superhero.getSuperPowers());
@@ -114,7 +120,7 @@ public class UserInterface {
 
     public void printSuperheroList() {
         for (Superhero superhero : superheroList()) {
-            System.out.println(superhero.getName());
+            printHero(superhero);
         }
     }
     public void editSuperHeroStats(Scanner userInput) {
@@ -226,20 +232,27 @@ public class UserInterface {
         controller.searchSpecificHero();
     }
 
-    // SORTING
+    //SORTING
+    public void sortingUIIntro(){
+        menuText.sortingMenuText();
+        input = scanner.nextInt();
+        switch (input){
+            case 1:
+                sortingUISingleAttribute();
+                break;
+            case 2:
+                sortingUITwoAttributes();
+                break;
+            case 9:
+                menu();
+        }
+    }
 
-    private void sortBySingleCriteria() {
-        System.out.println("Vælg venligst hvad du vil sortere efter:\n" +
-                "1. Navn.\n" +
-                "2. Superheltenavn.\n" +
-                "3. Kræfter.\n" +
-                "4. Styrketal.\n" +
-                "5. Skabelsesår.\n" +
-                "6. Menneskelig eller ej.\n" +
-                "9. Tilbage til hovedmenu.\n");
+    public void sortingUISingleAttribute(){
+        menuText.sortingAttributeMenuText();
         try {
             String menuChooser = scanner.next();
-            int menuChooserInt = Integer.parseInt(menuChooser);
+            int menuChooserInt = scanner.nextInt();
 
             if (menuChooser.isEmpty()) {
                 System.out.println("Venligst indtast et tal fra listen");
@@ -273,29 +286,50 @@ public class UserInterface {
         }
     }
 
-    //SORTING
+    public void sortingUITwoAttributes(){
+        int input1 = 0;
+        int input2 = 0;
+        boolean keepRunning = true;
+        do {
+            System.out.println("Vælg venligst hvilke attributer du først vil sortere efter ved hjælp af tallene nedenfor:");
+            System.out.println("Skriv 9 for at komme tilbage til hovedmenu");
+            menuText.sortingAttributeMenuText();
+            input1 = scanner.nextInt();
+            if (input1 ==9){
+                break;
+            }
+            input2 = scanner.nextInt();
+            if (input2 ==9){
+                break;
+            }
+            sortByNameSwitch(input1, input2);
+            sortBySuperNameSwitch(input1, input2);
+            sortByPowersSwitch(input1, input2);
+            sortByStrengthSwitch(input1, input2);
+            sortByCreationYearSwitch(input1, input2);
+            sortByHumanSwitch(input1, input2);
+        } while (keepRunning);
+        mainMenu();
+    }
+    //SINGLE SORTS
     public void sortByName() {
 
         for (Superhero superhero : controller.sortByName()) {
             printHero(superhero);
-
         }
     }
-
     public void sortBySuperheroName() {
 
         for (Superhero superhero : controller.sortBySuperheroName()) {
             printHero(superhero);
         }
     }
-
     public void sortByPowers() {
 
         for (Superhero superhero : controller.sortByPowers()) {
             printHero(superhero);
         }
     }
-
     public void sortByStrengthLevel() {
 
         for (Superhero superhero : controller.sortByStrengthLevel()) {
@@ -317,7 +351,307 @@ public class UserInterface {
         }
     }
 
+    //SORT BY TWO ATTRIBUTES
+    //NAME
+    public void sortByNameSwitch(int input1, int input2){
+        switch (input1 + "|" +  input2) {
+            case 1 + " |" +  1:
+                System.out.println("Venligst indtast to forskellige tal.");
+                sortingUITwoAttributes();
+                break;
+            case 1 + "|" + 2:
+                sortNameSuperHeroName();
+                break;
+            case 1 + "|" + 3:
+                sortNamePowers();
+                break;
+            case 1 + "|" + 4:
+                sortNameStrength();
+                break;
+            case 1 + "|" + 5:
+                sortNameCreationYear();
+                break;
+            case 1 + "|" + 6:
+                sortNameHuman();
+                break;
+        }
+    }
+    public void sortNameSuperHeroName(){
+        for (Superhero superhero : controller.sortByNameThenSuperHeroName()) {
+            printHero(superhero);
+        }
+    }
+    public void sortNamePowers(){
+        for (Superhero superhero : controller.sortByNameThenSuperPowers()) {
+            printHero(superhero);
+        }
+    }
+    public void sortNameStrength(){
+        for (Superhero superhero : controller.sortByNameThenStrength()) {
+            printHero(superhero);
+        }
+    }
+    public void sortNameCreationYear(){
+        for (Superhero superhero : controller.sortByNameThenCreationYear()) {
+            printHero(superhero);
+        }
+    }
+    public void sortNameHuman(){
+        for (Superhero superhero : controller.sortByNameThenHuman()) {
+            printHero(superhero);
+        }
+    }
+    //SUPERHERONAME
+    public void sortBySuperNameSwitch(int input1, int input2){
+        switch (input1 + "|" + input2) {
+            case 2 + "|" + 2:
+                System.out.println("Venligst indtast to forskellige tal.");
+                sortingUITwoAttributes();
+                break;
+            case 2 + "|" + 1:
+                sortSuperHeroNameName();
+                break;
+            case 2 + "|" + 3:
+                sortSuperHeroNamePowers();
+                break;
+            case 2 + "|" + 4:
+                sortSuperHeroNameStrength();
+                break;
+            case 2 + "|" + 5:
+                sortSuperHeroNameCreationYear();
+                break;
+            case 2 + "|" + 6:
+                sortSuperHeroNameHuman();
+                break;
+        }
 
+    }
+    public void sortSuperHeroNameName(){
+        for (Superhero superhero : controller.sortBySuperHeroNameThenName()) {
+            printHero(superhero);
+        }
+    }
+    public void sortSuperHeroNamePowers(){
+        for (Superhero superhero : controller.sortBySuperHeroNameThenSuperPowers()) {
+            printHero(superhero);
+        }
+    }
+    public void sortSuperHeroNameStrength(){
+        for (Superhero superhero : controller.sortBySuperHeroNameThenStrength()) {
+            printHero(superhero);
+        }
+    }
+    public void sortSuperHeroNameCreationYear(){
+        for (Superhero superhero : controller.sortBySuperPowerThenCreationYear()) {
+            printHero(superhero);
+        }
+    }
+    public void sortSuperHeroNameHuman(){
+        for (Superhero superhero : controller.sortBySuperPowerThenHuman()) {
+            printHero(superhero);
+        }
+    }
+
+    //POWERS
+    public void sortByPowersSwitch(int input1, int input2){
+        switch (input1 + "|" + input2) {
+            case 3 + "|" + 3:
+                System.out.println("Venligst indtast to forskellige tal.");
+                sortingUITwoAttributes();
+                break;
+            case 3 + "|" + 1:
+                sortPowersName();
+                break;
+            case 3 + "|" + 2:
+                sortPowersSuperHeroName();
+                break;
+            case 3 + "|" + 4:
+                sortPowersStrength();
+                break;
+            case 3 + "|" + 5:
+                sortPowersYear();
+                break;
+            case 3 + "|" + 6:
+                sortPowersHuman();
+                break;
+        }
+    }
+    public void sortPowersName(){
+        for (Superhero superhero : controller.sortBySuperPowerThenName()) {
+            printHero(superhero);
+        }
+    }
+    public void sortPowersSuperHeroName(){
+        for (Superhero superhero : controller.sortBySuperPowerThenSuperHeroName()) {
+            printHero(superhero);
+        }
+    }
+    public void sortPowersStrength(){
+        for (Superhero superhero : controller.sortBySuperPowerThenStrength()) {
+            printHero(superhero);
+        }
+    }
+    public void sortPowersYear(){
+        for (Superhero superhero : controller.sortBySuperPowerThenCreationYear()) {
+            printHero(superhero);
+        }
+    }
+    public void sortPowersHuman(){
+        for (Superhero superhero : controller.sortBySuperPowerThenHuman()) {
+            printHero(superhero);
+        }
+    }
+    //STRENGTH
+    public void sortByStrengthSwitch(int input1, int input2){
+        switch (input1 + "|" + input2) {
+            case 4 + "|" + 4:
+                System.out.println("Venligst indtast to forskellige tal.");
+                sortingUITwoAttributes();
+                break;
+            case 4 + "|" + 1:
+                sortStrengthName();
+                break;
+            case 4 + "|" + 2:
+                sortStrengthSuperHeroName();
+                break;
+            case 4 + "|" + 3:
+                sortStrengthPowers();
+                break;
+            case 4 + "|" + 5:
+                sortStrengthCreationYear();
+                break;
+            case 4 + "|" + 6:
+                sortStrengthHuman();
+                break;
+        }
+
+    }
+    public void sortStrengthName(){
+        for (Superhero superhero : controller.sortByStrengthThenName()) {
+            printHero(superhero);
+        }
+    }
+    public void sortStrengthSuperHeroName(){
+        for (Superhero superhero : controller.sortByStrengthThenSuperHeroName()) {
+            printHero(superhero);
+        }
+    }
+    public void sortStrengthPowers(){
+        for (Superhero superhero : controller.sortByStrengthThenPowers()) {
+            printHero(superhero);
+        }
+    }
+    public void sortStrengthCreationYear(){
+        for (Superhero superhero : controller.sortByStrengthThenCreationYear()) {
+            printHero(superhero);
+        }
+    }
+    public void sortStrengthHuman(){
+        for (Superhero superhero : controller.sortByStrengthThenHuman()) {
+            printHero(superhero);
+        }
+    }
+
+    //CREATIONYEAR
+    public void sortByCreationYearSwitch(int input1, int input2){
+        switch (input1 + "|" + input2) {
+            case 5 + "|" + 5:
+                System.out.println("Venligst indtast to forskellige tal.");
+                sortingUITwoAttributes();
+                break;
+            case 5 + "|" + 1:
+                sortYearName();
+                break;
+            case 5 + "|" + 2:
+                sortYearSuperHeroName();
+                break;
+            case 5 + "|" + 3:
+                sortYearPowers();
+                break;
+            case 5 + "|" + 4:
+                sortYearStrength();
+                break;
+            case 5 + "|" + 6:
+                sortYearHuman();
+                break;
+        }
+
+    }
+    public void sortYearName(){
+        for (Superhero superhero : controller.sortByCreationYearThenName()) {
+            printHero(superhero);
+        }
+    }
+    public void sortYearSuperHeroName(){
+        for (Superhero superhero : controller.sortByCreationYearThenSuperHeroName()) {
+            printHero(superhero);
+        }
+    }
+    public void sortYearPowers(){
+        for (Superhero superhero : controller.sortByCreationYearThenPowers()) {
+            printHero(superhero);
+        }
+    }
+    public void sortYearStrength(){
+        for (Superhero superhero : controller.sortByCreationYearThenStrength()) {
+            printHero(superhero);
+        }
+    }
+    public void sortYearHuman(){
+        for (Superhero superhero : controller.sortByCreationYearThenHuman()) {
+            printHero(superhero);
+        }
+    }
+    //HUMAN
+    public void sortByHumanSwitch(int input1, int input2){
+        switch (input1 + "|" + input2) {
+            case 6 + "|" + 6:
+                System.out.println("Venligst indtast to forskellige tal.");
+                sortingUITwoAttributes();
+                break;
+            case 6 + "|" + 1:
+                sortHumanName();
+                break;
+            case 6 + "|" + 2:
+                sortHumanSuperHeroName();
+                break;
+            case 6 + "|" + 3:
+                sortHumanPowers();
+                break;
+            case 6 + "|" + 4:
+                sortHumanStrength();
+                break;
+            case 6 + "|" + 5:
+                sortHumanCreationYear();
+                break;
+        }
+
+    }
+    public void sortHumanName(){
+        for (Superhero superhero : controller.sortByHumanThenName()) {
+            printHero(superhero);
+        }
+    }
+    public void sortHumanSuperHeroName(){
+        for (Superhero superhero : controller.sortByHumanThenSuperHeroName()) {
+            printHero(superhero);
+        }
+    }
+    public void sortHumanPowers(){
+        for (Superhero superhero : controller.sortByHumanThenPowers()) {
+            printHero(superhero);
+        }
+    }
+    public void sortHumanStrength(){
+        for (Superhero superhero : controller.sortByHumanThenStrength()) {
+            printHero(superhero);
+        }
+    }
+    public void sortHumanCreationYear(){
+        for (Superhero superhero : controller.sortByHumanThenCreationYear()) {
+            printHero(superhero);
+        }
+    }
 
 
 }
